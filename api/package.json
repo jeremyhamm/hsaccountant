@@ -1,0 +1,12 @@
+{
+  "name": "hsaccountant-api",
+  "version": "1.0.0",
+  "description": "",
+  "author": "Jeremy Hamm <https://github.com/jeremyhamm>",
+  "license": "MIT",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  }
+}
