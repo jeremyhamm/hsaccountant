@@ -13,6 +13,8 @@ services:
     volumes:
       - ./api:/api
       - /api/node_modules/
+    ports:
+      - "3000:3000"
     depends_on:
       - db
     command: ["/api/docker/wait-for-it.sh", "db:5432", "--", "npm", "run", "start"]
@@ -26,8 +28,8 @@ services:
     restart: always
     environment:
       POSTGRES_DB: hsaccountant
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: 2!3#VT#E$jfxB
+      POSTGRES_USER: hsaccountant
+      POSTGRES_PASSWORD: wexgPPKtk5Q7Q
 networks:
   adblaster:
     name: hsaccountant

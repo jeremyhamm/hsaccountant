@@ -21,7 +21,7 @@ build () {
 # Execute docker-compose up --build
 update () {
   echo "📀 Update app container... 📀"
-  docker-compose restart app
+  docker-compose restart api
 }
 
 "$@"
