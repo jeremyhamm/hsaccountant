@@ -4,7 +4,12 @@ services:
   #   container_name: client
   #   build:
   #     context: .
-  #     dockerfile: ./client/docker/Dockerfile
+  #     dockerfile: ./client/Dockerfile
+  #   volumes:
+  #     - ./client:/app
+  #     - /app/node_modules/
+  #   ports:
+  #     - 8080:8080
   api:
     container_name: api
     build:
@@ -12,24 +17,25 @@ services:
       dockerfile: ./api/docker/Dockerfile
     volumes:
       - ./api:/api
-      - /api/node_modules/
     ports:
-      - "3000:3000"
+      - 3000:3000
     depends_on:
       - db
-    command: ["/api/docker/wait-for-it.sh", "db:5432", "--", "npm", "run", "start"]
+    links:
+      - db
   db:
     container_name: db
     image: postgres:latest
     volumes:
-    - ./db/create.sql:/docker-entrypoint-initdb.d/create.sql
+    - ./db/transactions.sql:/docker-entrypoint-initdb.d/transactions.sql
+    - ./db/users.sql:/docker-entrypoint-initdb.d/users.sql
     ports:
-      - "5432:5432"
+      - 5432:5432
     restart: always
     environment:
       POSTGRES_DB: hsaccountant
       POSTGRES_USER: hsaccountant
-      POSTGRES_PASSWORD: wexgPPKtk5Q7Q
+      POSTGRES_PASSWORD: cf%N8iX&jpGGtpM9NeSgQpHbTp7*jo2#
 networks:
-  adblaster:
+  default:
     name: hsaccountant
